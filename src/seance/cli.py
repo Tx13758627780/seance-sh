@@ -183,7 +183,11 @@ def cmd_ofrenda(args, cfg: Config) -> int:
         print(effects.paint("   No one has died here yet. Give it time.", "grey", stream=out))
         return 0
     md = [f"# Ofrenda digital — {today.isoformat()}", ""]
-    for d in departed:
+    home = str(Path.home())
+    angles = random.sample(ghost.EPITAPH_ANGLES, len(ghost.EPITAPH_ANGLES))
+    for i, d in enumerate(departed):
+        if d.name.startswith(home + os.sep):
+            d.name = "~" + d.name[len(home):]
         if args.no_ai:
             text, note = remembrance_offline(d), "offline template"
         else:
@@ -192,7 +196,8 @@ def cmd_ofrenda(args, cfg: Config) -> int:
         print(effects.paint("  🕯️  ", "marigold", stream=out) + effects.paint(d.name, "bone", "bold", stream=out)
               + effects.paint(f"   [{label} · {ago(d.when)}]", "grey", stream=out))
         if text is None:
-            r = speak(cfg, ghost.epitaph_messages(d.kind.replace("-", " "), d.name, d.detail), out,
+            r = speak(cfg, ghost.epitaph_messages(d.kind.replace("-", " "), d.name, d.detail,
+                                                       angles[i % len(angles)]), out,
                       ("pink", "italic"), False, 1, random.Random(), prefix="      ",
                       model=cfg.ofrenda_model, max_tokens=90, temperature=0.8,
                       fallback_text=remembrance_offline(d), stir_text="lighting a candle")

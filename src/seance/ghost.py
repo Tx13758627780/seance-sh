@@ -175,8 +175,18 @@ EPITAPH_PERSONA = (
 )
 
 
-def epitaph_messages(kind: str, name: str, detail: str) -> list[dict]:
+EPITAPH_ANGLES = [
+    "Mention one offering you place on the altar for it, something it would have loved in life.",
+    "Write it as a tiny eulogy, as if its old friends in the codebase were speaking.",
+    "Say how the marigold petals will guide it home tonight.",
+    "Recall, gently, the moment it left this world.",
+    "End with a small joke it would have appreciated.",
+]
+
+
+def epitaph_messages(kind: str, name: str, detail: str, angle: Optional[str] = None) -> list[dict]:
+    angle = angle or random.choice(EPITAPH_ANGLES)
     return [
         {"role": "system", "content": EPITAPH_PERSONA},
-        {"role": "user", "content": f"The departed: a {kind} named {name}. What we know: {detail}\nWrite its remembrance."},
+        {"role": "user", "content": f"The departed: a {kind} named {name}. What we know: {detail}\n{angle}\nWrite its remembrance."},
     ]

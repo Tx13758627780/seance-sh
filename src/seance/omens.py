@@ -35,6 +35,8 @@ DESTRUCTIVE = [
     (re.compile(r"\bdocker\s+(rm|rmi|system\s+prune)\b"), "It destroys containers or images."),
 ]
 
+SIGNAL_DEATHS = {130: "SIGINT, Ctrl-C", 137: "SIGKILL", 143: "SIGTERM"}
+
 ART_FOR = {"kill": "calavera", "rm": "tombstone", "git": "ghost", "fail": "ghost", "sudo": "eye"}
 
 
@@ -72,9 +74,10 @@ def deaths_in(command: str, exit_code: int = 0, cwd: str = "") -> list:
             out += [("branch", a) for a in args[1:]]
         elif head in ("kill", "pkill", "killall"):
             out += [("process", a) for a in args if not re.fullmatch(r"-?\d{1,2}|-[A-Z]+", a)]
-    if exit_code in (137, 143, 130):
-        name = os.path.basename(_words(command)[0]) if _words(command) else command
-        out.append(("process", f"{name} (exit {exit_code})"))
+    if exit_code in SIGNAL_DEATHS:
+        name = command.strip()
+        name = name if len(name) <= 40 else name[:39] + "…"
+        out.append(("process", f"{name} ({SIGNAL_DEATHS[exit_code]})"))
     return out
 
 

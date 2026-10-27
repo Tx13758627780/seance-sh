@@ -7,7 +7,7 @@ def test_exit_codes_become_omens():
     omen = omens.read("python train.py", 137, None, [])
     assert any("SIGKILL" in f for f in omen.facts)
     assert omen.art == "calavera"
-    assert ("process", "python (exit 137)") in omen.deaths
+    assert ("process", "python train.py (SIGKILL)") in omen.deaths
 
 
 def test_failure_streak_escalates_possession():
