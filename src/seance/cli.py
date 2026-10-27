@@ -8,6 +8,7 @@ import json
 import os
 import queue
 import random
+import shutil
 import subprocess
 import sys
 import threading
@@ -50,6 +51,10 @@ def speak(cfg: Config, messages: list, stream, styles, possessed: bool, intensit
                  lambda: not q.empty(), stream, rnd, possessed)
     on = effects.enabled(stream)
     start = "".join(effects.PALETTE[s] for s in styles) if on else ""
+    width = shutil.get_terminal_size((100, 24)).columns - 1
+    indent = len(prefix) if len(prefix) < 20 else 4
+    wrap = effects.Wrapper(stream, width, indent, len(prefix) + (1 if "👻" in prefix else 0),
+                           cfg.type_delay if on else 0)
     first = True
     while True:
         chunk = q.get()
@@ -58,20 +63,16 @@ def speak(cfg: Config, messages: list, stream, styles, possessed: bool, intensit
         if first:
             stream.write(start + prefix)
             first = False
-        if on and cfg.type_delay > 0:
-            for ch in chunk:
-                stream.write(ch)
-                stream.flush()
-                time.sleep(cfg.type_delay)
-        else:
-            stream.write(chunk)
-        stream.flush()
+        wrap.feed(chunk)
     t.join()
     if "reply" in result:
         reply = result["reply"]
     else:
         reply = ghost.Reply(fallback_text or ghost.fallback(fallback_seed), model or cfg.model, 0.0, offline=True)
-        stream.write(start + prefix + reply.text)
+        if first:
+            stream.write(start + prefix)
+        wrap.feed(reply.text)
+    wrap.close()
     stream.write((effects.RESET if on else "") + "\n")
     stream.flush()
     return reply

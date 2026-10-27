@@ -164,3 +164,44 @@ def stir(text: str, intensity: int, ready, stream=None, rnd: random.Random | Non
         i += 1
     stream.write("\r" + ESC + "2K")
     stream.flush()
+
+
+class Wrapper:
+    """Word-wraps streamed text with a hanging indent, so whispers never break mid-word."""
+
+    def __init__(self, stream, width: int, indent: int, col: int, delay: float = 0.0):
+        self.stream, self.width, self.indent, self.col, self.delay = stream, max(20, width), indent, col, delay
+        self.word = ""
+
+    def _emit(self, text: str) -> None:
+        if self.delay > 0:
+            for ch in text:
+                self.stream.write(ch)
+                self.stream.flush()
+                time.sleep(self.delay * (4 if ch in ".,…" else 1))
+        else:
+            self.stream.write(text)
+            self.stream.flush()
+
+    def _flush_word(self) -> None:
+        if not self.word:
+            return
+        if self.col + len(self.word) > self.width and self.col > self.indent:
+            self.stream.write("\n" + " " * self.indent)
+            self.col = self.indent
+        self._emit(self.word)
+        self.col += len(self.word)
+        self.word = ""
+
+    def feed(self, text: str) -> None:
+        for ch in text:
+            if ch == " ":
+                self._flush_word()
+                if self.col < self.width:
+                    self._emit(" ")
+                    self.col += 1
+            else:
+                self.word += ch
+
+    def close(self) -> None:
+        self._flush_word()
