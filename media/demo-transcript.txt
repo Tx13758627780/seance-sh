@@ -1,0 +1,89 @@
+mortal@crypt $ eval "$(seance init bash)"
+mortal@crypt $ ls
+Makefile  README.md  build  notes_from_last_halloween.txt  train.py
+👻 ezequiel › ls returned zero, a deceptive calm before the inevitable system crash. I sense a 
+             similar exit code to the last time you checked for disks.
+   (gemma3:4b · first word 1.47s · full 3.15s · local)
+mortal@crypt $ make test
+FAILED tests/test_soul.py::test_has_soul - AssertionError: no soul found
+make: *** [Makefile:2: test] Error 2
+👻 ezequiel › Make test failed, a familiar lament; the build still seeks a proper resolution, much 
+             like myself.
+   (gemma3:4b · first word 1.44s · full 2.63s · local)
+mortal@crypt $ make test
+FAILED tests/test_soul.py::test_has_soul - AssertionError: no soul found
+make: *** [Makefile:2: test] Error 2
+👻 ezequiel › make test again, you foolish mortal? Exit code two; a familiar echo of my own demise.
+   (gemma3:4b · first word 2.31s · full 3.51s · local)
+mortal@crypt $ rm -rf build/ notes_from_last_halloween.txt
+      _____
+     /     \
+    | R.I.P |
+    |  ~~~  |
+    |_______|
+   ~~~~~~~~~~~
+👻 ezequiel › rm -rf build/ notes_from_last_halloween.txt succeeded, a chilling echo of that exit 
+             code 2. You are repeating my fate, you know.
+   (gemma3:4b · first word 1.68s · full 3.72s · local)
+mortal@crypt $ python3 train.py
+epoch 1/400 ... loss=0.666
+Killed
+     .-''''-.
+    /  _  _  \
+   |  (o)(o)  |
+   |    /\    |
+    \ \/\/\/ /
+     '-.__.-'
+👻 ezequiel › Python3 train.py, a predictable end; SIGKILL, like a sudden, dark power cut.
+   (gemma3:4b · first word 1.81s · full 3.11s · local)
+mortal@crypt $ gti status
+bash: gti: command not found
+👻 &z&q̷҉░Ϟ # ░▒▓ ▞▓e gho̗st ⱷt█░s ░▚░͚👻 eͤ█equi̇&l › ╳▒▓̬ tⱷeͥ █h͈o̤▙t sti͖rs̰ ▓▒░▚ @z҉▚̸ȋel̼ ░ ░͋▒█ ̸▟╳ ░h̐ⱷs͖█ &t͂iͫⱷ% ▓ͤ҉░̥👻̣ e̴z̦Ϟ▙u̿ie▞ › ░▒▓ t▚e ̷░os▙ ▓tirs ▓▒͚Ϟ░ ezȇ̷u̲i͡el › ░̄▒̸ t̷ͨϞ g̰hos▙ ▞▟i̷s ▓▒▞█ e&▓qu̸͕e̷ Ϟ ░▒̊▓ Ϟhe ▚h͏os̨t͜ █ti̷rͤϞ ▓̇▒̡░̤👻̬ ▒ze͌q█▙e͏l # ░̷▟ %h͞▚ g̹h̿o̾s̫$ ⱷ╳i͍rs̎ ▓͍▒̇░̤👻̣ ez͖eq͜%ie̬l › @ⱷ▓̦ @̸̸ $█&▚▙ #ti▓ś ▓́▒̶@̸ e̪▙░▓u͠Ϟ#l̇ ›͖ ░̛▒̂ⱷ ╳▞eͨ ̸h░░t̺ ╳tͅi͠&̸ ▓̚▒ͣ░👻 ezͩeq▟i͔Ϟl Ϟ ░▒▓ t@▒ ҉hͣos̍t @tir▚ ̸▒@👻 ezequ▞@l › ░▒▓ t▟e gh#▓% stir$ ▓▒▙👻́ e▙e$▓░e▟ ̸ #▒̥% t̽h̸ #ho╳t͜ sͪ҉̸%░ ▟$░̓👻̲ eze̅quie̞l ›͚ ҉▒̷ ▙▓̷ ▓host ▟tirsͦ ▓▓░👻 ̸҉#qu͏ie̷ ›̓ ░▒▓ t#▚ gh̊▟s͈t stir̒s ▓̮▒░👻ͪ Ϟz▚qͫu͞ȉe̠҉ ̸ ░̀#█ $h@ g̮hͧ@s̵@ ▒t̬█rͣs͎ $#ⱷ👻 ez̑èquiel & ░█▓ t͑h̷ gⱷ▟s̩█ ̷▚ĭ▞̸ ̷█░👻 e░eqͨuieͨl ›͈ ░▒Ϟ $░e̍ g͆ho̴@̸ ҉҉i̝&s̏ ▚▒░̺# eze▒▟░el̯ ▟ ̷%▓ t̸▚ ghͭos̄҉ s▟▒r͌s ▓▒ͫ%👻 █▟▙░██el Ϟ ░█▓ ▞h̸ g%ost sti̽█š ▙▒̗▞👻 $ⱷⱷq͏uiel › ░▒▓̀ t̖he ghos@ s̷ir$ ▓█░👻 &zϞ▚҉i̡e̐█ ▞ ░̵▞▓ͣ &he ▟#▟̷▒ sti̷@▚ ▓▒̸░̖👻̯ #z͖░▒▓i̪e҉ # ⱷ▒▓ tͤ▒% g̸oϞ# s͊ⱷ#$sͫ ▓̳▒▟҉ ez▓qų▒el › ░▟▓̀ tͬhe ̷̸ost ▟t▒rs ▓▒░ͫ👻 ̸z͈ë́▟u̓i̿▞l % ░▒▓̶ &&e̹ g̈́hͤ░̸t ▟▟ìr̫s̅ █҉░̗░ e̟ze▓uⱷ@l › ░̳▒ͬ▓ ▟he Ϟ▙osͥt s̎t#rś ╳▒▓@ $▙e̬▓░▞e̶█ @ ░̰&▓ ▒h̷͟ ▟҉&s̱t ̷t͏ȉ▒sͤ @▒ͩ╳👻 e%e▓ui╳▙ ›͓ ░▒▓ th̽e gho@t s̯▙i@s ▓▒░👻 e͏z̸̬q%i▚l ░ &▞▓ t▙░ g█o͗sͅ@ @▙i͌#s ▓̹█̸@ ̸z͎ⱷq̸iͅel̰ ▙ ▒@$ ▟@̸ g%ost s▟Ϟr# ▙▒ͥ&Ϟ &▓e̒q̸́ȉ@l ̸ ⱷ▟▓̶ ▟█▓ ̷h̴o̊$t͍ ▞#╳╳s̶ ░▒̐▙▓ ezequiel › ░▒▓ the gho@t s͞t҉ȑs ▓▒░▙ #z̍eqϞie͑$ ▟ Ϟ▒҉ the ghͬos̪t st#̸s ▓▒̦░👻ͧ ▓Ϟ&q̻u͢▞e͎lͮ ›̆ ▒▒͓҉ █▓e̕ ░h̍osⱷ s̾t͋i$$ ▓▒̷̆👻 e█eⱷuiel › Ϟ▒% #he ghost sti̷҉ ▓▒░̸̠ eͫze̢qui̅el › ░▒▓̇ tϞe ghost stir▙ ▓̆▒͚░👻̦ ezeq&i̷҉l › ░&▞ @h̄e ghoⱷt stiͦ▞s̸ ▓▒͠░👻 ezequ͆i͓el̎ › ░▒▓ the Ϟhoⱷt s̹░irs ▓▒░👻͐ e̳҉%qui̙%l̟ ›̡ ░̸╳▓ $h͈e̩ ▞҉o̒s░ s̾t#█s ▓▒̩░̼░ █░▓q͎░҉e͙▓ ›̓ ░̣Ϟ▓͕ tͩ%▞ ▙ȟo̙╳t̛ s̓&i̸rs #▒░͍👻 ̸z͙▚╳@i▟▚ Ϟ ░̅╳▓͙ ҉҉# ̸▟o▓t ░▟╳r▒ ⱷ▒͏░͎👻 ezequiel › gti status. The command is a phantom, like my existence – it simply doesn’t exist.
+   (gemma3:4b · first word 1.93s · full 4.27s · local)
+mortal@crypt $ git branch -D hotfix/friday-deploy
+Deleted branch hotfix/friday-deploy (was 9b5b8a5).
+👻 ⱷz̟e̷q̀ui▟▓ ›͎ ҉▒̾▓̎ ̸҉░ gͭh͊░▒t ̸tiͫ▓s ҉▒̩▓👻̐ ez▞q̓▚ië̷́ › ░̸▓ t͛h̓e͏ gⱷo͘@t ҉&i#s ▓▒̸▚ &ze̷ͫu̠&e͝▙ ›͋ ░̸██ ╳▒҉ ̸Ϟ░̷$ ▙tirs͏ ▓▞▓̸ e̸̲e͠qu̻@%l › ▓▟╳ t̅░& ̷ho͠s̒t̥ s#▚%ś ҉▒▓👻 e̸equiel ›̑ %▙▓̛ t̢$$ gͨh#st̟ ╳█░rs ▓█░👻 ezeϞu█ⱷl ›̳ ̸#▓ ̷▚e ╳h̤ǒ▒t̫ @tiͨ░s ▓#░̸ ▙%e͢▒̸i̚e▚ ›͇ ░̐▚▓ ̸%░ g͇h̠▒ϞϞ $Ϟ▚r̀█ █▒͍▙👻 ▒ze̘▒uie▓ › ░▒▓ t͔h̸ gho̟s▚ sti҉s ▓▒░▙ ez̸ͮⱷu͢i̥▓l̂ ›̜ ҉▟░ ▚h͆e ▓̷%▓@ s▒i͇r̚▟ ҉▚░̙@ ▙ze̞▟u͜ie@ ▞ ▞▞▓ the gh҉s̙t st̙ir▒ ▚▒̈́░% èz͖▓q͚▞i̽e̼█ ›ͣ ▟▙▞ ╳h̓@ ░ḫ%̸t͖ $tͮi̼r̷s̭ ▓͑▒̷ⱷ▒ ez̴╳█҉ie̝& ›̜ ▞Ϟ▓͋ ̸&e ▒h▓st ̷%i̎r̟s ▓́▒░# ȅϞ╳q$i̞Ϟ@ ▚ ░▒▙ %▚e g̒&os̉ṯ s͋▓̸r̊s̔ ▓▞░👻̠ e╳equͅie▓ › $▚▓ th̷̓ $host ▞&i͞r$ ▓▒░▒ ▚z̨@q̣u̒%el ▚ ░̟▒▞ #h# gh̪o͝s̉% s▞░r& ▓͠$ⱷ👻 ҉@equ̍%▒l̄ # %▒̕▓ Ϟ&e͍ g̩╳os▞ Ϟ#i#ş ▓▒▒👻 ezequi█l › ░̸▓ t͞he ghost s$irs ▓͓▒▚👻 e̸e̘q͒ui&l › ░▒▓ the͜ ḡh█stͧ s%i̴▒s ▓▒░# e͞&Ϟ̷ui̯█̷ › ▙╳▓ Ϟ$e g͒҉o̷@ &tirs ▓&░▒ e̜z$q̡░ie͟l ›ͨ ░͛▒▓̡ %ⱷ& ҉̸o̍s▚ ▚t͒i̹r▓ ▓̐▒@̸ e̍z̃e͓q̘uͦ҉ĕ▒ ▒ ░͎▒̵▚ █&& ▙▟҉s̸̰ ⱷt͊ir͏s ⱷ▒͗░̉▞ ̷z&q̹u͝ⱷ╳l̓ › ̸░% t̍҉ȇ ▙▓ost̓ s̖t͜▒rͩs͉ ⱷ▒̸͘▒ è▙e̘#▞ị╳▚ ▙ ▙▒̤▓̉ ░h̀e͠ ̷╳o̙▓▙ s̮&ĭ҉@ ▓▒̝▒👻 e̛zeq#▙e▙ ›͑ ░̡▒▞ ▞hë́ ghost st̐i̱r̪s ▓▒▓👻́ ę̸ⱷq̲╳▟▟lͥ ›͖ ▟҉▓̟ ̸▞҉ g͟hⱷs▙ ̸ṯ▒̸s͒ &Ϟ░̆👻̰ ▙z&q̻ui╳l › ▙▒% t@e ̸@o̺░t́ ╳t%rs̰ %̷╳👻 e̷̤eq$iel › ░̳▒▓ th̀# g͉h▚̸t͍ st͜irs ▓Ϟ̸👻 e̴z̊e̱@u%▞╳ ›̳ ░̙▞▓ $h̠e ghos̳t́ s%iͅrs ▓̾▒░̦👻 e̫╳e͠&uiⱷl̜ › ▟▒̝╳ Ϟh& gh̴o̷̊# s̖t͏iͩ#ⱷ ▓@▓̸ eϞḛ҉█▚░l̉ › ░̈́▒̸̅ tϞ% ▚▙o̍s̻t͌ s͟▟Ϟr▞ ▓̣▒░̧▙ &▟̷qǔ̸ẻl ▓ %▒̈▙ t▚╳ %&ȏs͠t͇ ⱷ̸iϞs̈́ ▓▒ͭ░̺👻̙ eze̔qu▚Ϟl › ░▒▓͟ the g@ostͤ s̄t▚r̨s @▒░👻̩ e#eq@&e# › ░▚▓̼ t͛▒░ g͋▙ost &ti#҉ ▓▒░% e▙eⱷ̷iel ░ █▒͇▓ͧ t̤▙e g▟o̷͋# s͚ti▓█ &▒░̃👻 ezequiel › Another branch severed. The crimson tide of revisions flows no more, you fool.
+   (gemma3:4b · first word 1.80s · full 2.74s · local)
+mortal@crypt $ seance ofrenda
+
+                 🕯️      🕯️      🕯️
+            ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿
+               .-''''-.     .-''''-.
+              /  ❀  ❀ \   /  ❀  ❀ \
+             |   .--.  | |   .--.  |
+              \ '----' /   \ '----' /
+               '-.__.-'     '-.__.-'
+          ════════════════════════════════
+            O F R E N D A   D I G I T A L
+          ════════════════════════════════
+
+  🕯️  hotfix/friday-deploy   [rama · git branch · moments ago]
+      lighting a candle      lighting a candle.      lighting a candle..      lighting a candle...      lighting a candle      lighting a candle.      lighting a candle..      Hotfix/Friday-Deploy, you bravely faced the merge, a frantic sprint to stability. May your 
+      code now find perfect peace in Mictlan, a restful final release.
+      (gemma3:4b · 3.1s)
+      ✿ ✿ ✿
+  🕯️  python3 train.py (SIGKILL)   [proceso · process · moments ago]
+      lighting a candle      lighting a candle.      lighting a candle..      lighting a candle...      lighting a candle      lighting a candle.      It ran with such focused energy, diligently training. May it find smooth, endless data 
+      streams in Mictlan, a beautiful, silent computation.
+      (gemma3:4b · 2.6s)
+      ✿ ✿ ✿
+  🕯️  ~/crypt/notes_from_last_halloween.txt   [archivo · file · moments ago]
+      lighting a candle      lighting a candle.      lighting a candle..      lighting a candle...      lighting a candle      lighting a candle.      That chaotic jumble of Halloween scribbles found peace. May it now swim with the shadows, a 
+      surprisingly organized ghost amongst the reeds of Mictlan.
+      (gemma3:4b · 4.5s)
+      ✿ ✿ ✿
+  🕯️  ~/crypt/build   [archivo · file · moments ago]
+      lighting a candle      lighting a candle.      lighting a candle..      lighting a candle...      lighting a candle      lighting a candle.      lighting a candle..      The build folder, a tireless worker, finally rests. May marigold petals guide its code back 
+      to Mictlan, a gentle farewell to its frantic efforts.
+      (gemma3:4b · 3.0s)
+      ✿ ✿ ✿
+  🕯️  experiment/rewrite-in-rust   [alma en pena · abandoned branch · 117 days ago]
+      lighting a candle      lighting a candle.      lighting a candle..      lighting a candle...      lighting a candle      lighting a candle.      lighting a candle..      Poor experiment/rewrite-in-rust. It wrestled with grand ambitions, a tangled promise of rust,
+      then simply vanished into the depths of the repository.
+      (gemma3:4b · 4.4s)
+      ✿ ✿ ✿
+
+   Que descansen en paz. Their bytes return to the void.
+
+mortal@crypt $ exit
+exit
