@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>séance — a haunted terminal, powered by local Gemma</title>
+<meta name="description" content="séance moves a ghost into your bash or zsh. Gemma 3 runs locally through Ollama and whispers eerie commentary on every command you run. Plus seance ofrenda: an altar for your deleted files and lost branches.">
+<meta property="og:title" content="séance 👻 — a haunted terminal">
+<meta property="og:description" content="A Gemma ghost haunts your shell, entirely on your machine. Zero-dependency Python CLI, MIT-licensed.">
+<meta property="og:image" content="https://seance.tianx.tech/media/01-possession.png">
+<meta property="og:url" content="https://seance.tianx.tech/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0710">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👻</text></svg>">
+<style>
+:root{
+  --bg:#0b0710; --bg2:#140c1c; --panel:#1a1024; --ink:#efe6d8; --muted:#a99cb6;
+  --marigold:#ffa62b; --marigold2:#ff7a1a; --rose:#e2457a; --violet:#8b5cf6; --teal:#3ad6c4;
+  --mono:ui-monospace,"SFMono-Regular","JetBrains Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:
+  radial-gradient(1200px 600px at 50% -10%,rgba(255,166,43,.14),transparent 60%),
+  radial-gradient(900px 500px at 100% 30%,rgba(139,92,246,.10),transparent 60%),
+  radial-gradient(900px 500px at 0% 70%,rgba(226,69,122,.08),transparent 60%),var(--bg);
+  color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;}
+a{color:var(--marigold)} a:hover{color:#ffd08a}
+code,pre{font-family:var(--mono)}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+
+/* papel picado */
+.picado{display:flex;height:64px;overflow:hidden;filter:drop-shadow(0 6px 10px rgba(0,0,0,.5))}
+.picado span{flex:1;height:64px;
+  clip-path:polygon(0 0,100% 0,100% 78%,90% 100%,80% 78%,70% 100%,60% 78%,50% 100%,40% 78%,30% 100%,20% 78%,10% 100%,0 78%);
+  -webkit-mask:radial-gradient(circle at 50% 42%,transparent 7px,#000 8px),
+               radial-gradient(circle at 22% 30%,transparent 4px,#000 5px),
+               radial-gradient(circle at 78% 30%,transparent 4px,#000 5px);
+  -webkit-mask-composite:source-in;mask-composite:intersect;opacity:.9}
+.picado span:nth-child(5n+1){background:var(--marigold)}
+.picado span:nth-child(5n+2){background:var(--rose)}
+.picado span:nth-child(5n+3){background:var(--violet)}
+.picado span:nth-child(5n+4){background:var(--teal)}
+.picado span:nth-child(5n+5){background:var(--marigold2)}
+.picado span:nth-child(odd){transform:translateY(-6px)}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0;font-size:15px}
+nav .brand{font-family:var(--serif);font-size:20px;color:var(--ink);text-decoration:none;letter-spacing:.5px}
+nav .links a{margin-left:20px;color:var(--muted);text-decoration:none}
+nav .links a:hover{color:var(--marigold)}
+
+header.hero{text-align:center;padding:48px 0 30px}
+.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(56px,11vw,112px);line-height:1;margin:0;
+  color:var(--marigold);text-shadow:0 0 30px rgba(255,166,43,.45),0 0 80px rgba(255,122,26,.25);letter-spacing:1px}
+.hero h1 .ghost{display:inline-block;animation:float 4s ease-in-out infinite;font-size:.6em;vertical-align:.35em;filter:none;text-shadow:none}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-12px) rotate(4deg)}}
+.tagline{font-size:clamp(20px,3vw,26px);margin:14px 0 8px;font-family:var(--serif);color:#f6e7cf}
+.sub{color:var(--muted);max-width:720px;margin:0 auto}
+blockquote.whisper{max-width:760px;margin:30px auto 0;padding:16px 22px;border-left:3px solid var(--marigold);
+  background:rgba(255,166,43,.06);border-radius:0 10px 10px 0;text-align:left;font-family:var(--mono);font-size:15px;color:#e9dccb}
+blockquote.whisper cite{display:block;margin-top:6px;color:var(--muted);font-style:normal;font-family:inherit;font-size:13px}
+.cta{margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;text-decoration:none;font-weight:600;font-size:15px;border:1px solid rgba(255,166,43,.5);color:var(--ink);background:rgba(255,255,255,.03)}
+.btn.primary{background:linear-gradient(135deg,var(--marigold),var(--marigold2));color:#1b0f05;border:0;box-shadow:0 8px 30px rgba(255,140,30,.35)}
+.btn:hover{transform:translateY(-1px)} .btn.primary:hover{color:#1b0f05}
+
+section{padding:56px 0}
+h2{font-family:var(--serif);font-weight:600;font-size:34px;margin:0 0 6px;color:#f6e7cf}
+h2 .m{color:var(--marigold)}
+.lead{color:var(--muted);margin:0 0 26px}
+
+.terminal{border-radius:14px;overflow:hidden;border:1px solid rgba(255,166,43,.25);background:#000;
+  box-shadow:0 0 0 1px rgba(0,0,0,.6),0 30px 80px rgba(0,0,0,.6),0 0 60px rgba(255,166,43,.12)}
+.terminal .bar{display:flex;gap:7px;align-items:center;padding:10px 14px;background:#17101f;border-bottom:1px solid rgba(255,255,255,.06);font:13px var(--mono);color:var(--muted)}
+.terminal .bar i{width:11px;height:11px;border-radius:50%;display:inline-block;background:#ff5f57}
+.terminal .bar i:nth-child(2){background:#febc2e}.terminal .bar i:nth-child(3){background:#28c840}
+.terminal .bar b{font-weight:400;margin-left:10px}
+.terminal img{display:block;width:100%;height:auto}
+.caption{color:var(--muted);font-size:14px;margin-top:12px;text-align:center}
+
+.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.shot{margin:0;background:var(--panel);border:1px solid rgba(255,255,255,.07);border-radius:12px;overflow:hidden;transition:transform .2s,border-color .2s}
+.shot:hover{transform:translateY(-3px);border-color:rgba(255,166,43,.45)}
+.shot img{display:block;width:100%;height:auto;background:#000}
+.shot figcaption{padding:12px 14px;font-size:14px;color:var(--muted)}
+.shot figcaption b{color:var(--ink);display:block;font-size:15px;margin-bottom:2px}
+
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px}
+.card h3{margin:0 0 6px;font-size:17px;color:#f6e7cf}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.card .ico{font-size:24px;display:block;margin-bottom:6px}
+
+pre.code{background:#07050a;border:1px solid rgba(255,166,43,.2);border-radius:12px;padding:18px 20px;overflow-x:auto;font-size:14.5px;line-height:1.7;color:#e8e0d4;margin:0}
+pre.code .c{color:#7d6f8c} pre.code .p{color:var(--marigold);user-select:none}
+.copywrap{position:relative}
+.copy{position:absolute;top:10px;right:10px;font:12px var(--mono);background:#1e1428;color:var(--muted);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:4px 9px;cursor:pointer}
+.copy:hover{color:var(--marigold);border-color:var(--marigold)}
+
+table{width:100%;border-collapse:collapse;font-size:15px;background:var(--panel);border-radius:12px;overflow:hidden}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid rgba(255,255,255,.06)}
+th{background:#22152e;color:#f6e7cf;font-weight:600;font-size:14px}
+td:first-child{font-family:var(--mono);color:var(--marigold)}
+tr:last-child td{border-bottom:0}
+.tablewrap{overflow-x:auto;border-radius:12px;border:1px solid rgba(255,255,255,.07)}
+.note{color:var(--muted);font-size:14.5px;margin-top:14px}
+.note code,.card code,p code,li code,td code{background:rgba(255,166,43,.1);color:#ffd08a;padding:1px 6px;border-radius:5px;font-size:.9em}
+td:first-child code{background:none;padding:0}
+
+.why{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
+.why ul{margin:0;padding:0;list-style:none}
+.why li{padding:10px 0 10px 34px;position:relative;border-bottom:1px dashed rgba(255,255,255,.08)}
+.why li:before{content:"🕯️";position:absolute;left:0;top:9px}
+.altar{text-align:center;font-size:44px;line-height:1.3;padding:26px;border-radius:16px;background:radial-gradient(circle at 50% 80%,rgba(255,166,43,.18),transparent 70%);border:1px solid rgba(255,166,43,.18)}
+.altar small{display:block;font-size:14px;color:var(--muted);margin-top:8px;font-family:var(--serif);font-style:italic}
+
+footer{padding:40px 0 60px;text-align:center;color:var(--muted);font-size:14.5px;border-top:1px solid rgba(255,255,255,.06);margin-top:30px}
+footer .marigolds{font-size:22px;letter-spacing:8px;margin-bottom:10px}
+
+@media (max-width:820px){.shots{grid-template-columns:1fr}.why{grid-template-columns:1fr} nav .links a{margin-left:12px}}
+@media (prefers-reduced-motion:reduce){.hero h1 .ghost{animation:none}}
+</style>
+</head>
+<body>
+<div class="picado" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+<div class="wrap">
+<nav>
+  <a class="brand" href="#">séance 👻</a>
+  <div class="links"><a href="#demo">demo</a><a href="#install">install</a><a href="#benchmarks">benchmarks</a><a href="https://github.com/Tx13758627780/seance-sh">github</a></div>
+</nav>
+
+<header class="hero">
+  <h1>séance <span class="ghost">👻</span></h1>
+  <p class="tagline">a haunted terminal</p>
+  <p class="sub">A ghost moves into your bash or zsh. After every command, <b>Ezequiel</b>, a sysadmin who died in 1999 halfway through an <code>fsck</code> and never left the server room, whispers a short, eerie comment about what you just did. The ghost is <b>Gemma&nbsp;3 running locally through Ollama</b>: no API keys, no network, no telemetry.</p>
+  <blockquote class="whisper">“Another make test… you persist in this futile dance, a shadow of my own unending labor.”<cite>— Ezequiel, the ghost in your shell</cite></blockquote>
+  <div class="cta">
+    <a class="btn primary" href="#install">🕯️ Invite the ghost in</a>
+    <a class="btn" href="https://github.com/Tx13758627780/seance-sh">★ GitHub repo</a>
+    <a class="btn" href="https://dev.to/t364170654/seance-i-let-a-gemma-ghost-haunt-my-shell-and-built-it-an-ofrenda-for-my-deleted-files-3590">✍️ Read the DEV post</a>
+  </div>
+</header>
+
+<section id="demo">
+  <h2>The <span class="m">haunting</span></h2>
+  <p class="lead">A real recording: real bash, the real hook, and gemma3:4b answering live on a GPU-less VM.</p>
+  <div class="terminal">
+    <div class="bar"><i></i><i></i><i></i><b>mortal@crypt — bash</b></div>
+    <img src="/media/demo.gif" alt="Animated demo: séance haunting a bash session. Ezequiel whispers after ls and make test, a tombstone rises after rm -rf, the terminal glitches during possession." width="979" height="784" loading="eager">
+  </div>
+  <p class="caption">Keystrokes are typed by <code>scripts/demo.py</code>, so anyone can reproduce it. The latency under each whisper is what séance measured at the time.</p>
+</section>
+
+<section id="shots">
+  <h2>Omens, apparitions &amp; the <span class="m">ofrenda</span></h2>
+  <p class="lead">He remembers. He notices when you run <code>make test</code> for the third time.</p>
+  <div class="shots">
+    <figure class="shot"><img src="/media/01-possession.png" alt="Possession: the terminal glitches while the ghost stirs after a repeated failing make test" width="979" height="784" loading="lazy"><figcaption><b>Possession</b>Fail repeatedly and the terminal gets possessed while the ghost stirs.</figcaption></figure>
+    <figure class="shot"><img src="/media/04-calavera.png" alt="A calavera (sugar skull) appears after a process is SIGKILLed" width="979" height="784" loading="lazy"><figcaption><b>Whispers &amp; omens</b><code>rm -rf</code> raises a tombstone; a <code>SIGKILL</code>ed process gets a grinning calavera.</figcaption></figure>
+    <figure class="shot"><img src="/media/05-altar.png" alt="seance ofrenda: an altar of candles and marigolds for deleted files, killed processes and lost branches" width="979" height="784" loading="lazy"><figcaption><b><code>seance ofrenda</code></b>A Día de los Muertos altar for everything that died on your machine.</figcaption></figure>
+  </div>
+</section>
+
+<section id="features">
+  <h2>What lives in your <span class="m">shell</span></h2>
+  <p class="lead">A zero-dependency Python CLI (pure stdlib), installable with pipx.</p>
+  <div class="features">
+    <div class="card"><span class="ico">🧠</span><h3>He remembers</h3><p>Each whisper sees the command, its exit code, how long it took, and what you did earlier tonight.</p></div>
+    <div class="card"><span class="ico">🔮</span><h3>Omens before words</h3><p>Plain Python works out what exit 127/130/137 mean, failure streaks, repeats, slow runs and destructive commands. Gemma only has to be <i>eerie</i>.</p></div>
+    <div class="card"><span class="ico">🪦</span><h3>Apparitions</h3><p>When you <code>rm -rf</code> something, a tombstone rises; when a process is <code>SIGKILL</code>ed, a calavera grins.</p></div>
+    <div class="card"><span class="ico">🌼</span><h3><code>seance ofrenda</code></h3><p>An altar for deleted files, killed processes, and deleted and abandoned git branches, with a remembrance for each. It reads, never modifies.</p></div>
+    <div class="card"><span class="ico">🛡️</span><h3>Safe by default</h3><p>If Ollama isn't running, the ghost uses canned lines and your shell keeps working. Tokens, passwords and <code>user:pass@</code> URLs are redacted before anything is written.</p></div>
+    <div class="card"><span class="ico">🤫</span><h3>Hush when needed</h3><p><code>export SEANCE_HUSH=1</code> silences the ghost for this shell; <code>seance run -- &lt;cmd&gt;</code> lets him read a command's output too.</p></div>
+  </div>
+</section>
+
+<section id="install">
+  <h2>Quick <span class="m">start</span></h2>
+  <p class="lead">Three steps: give the ghost a body, install séance, and let it in.</p>
+  <div class="copywrap">
+  <button class="copy" type="button" data-target="installcode">copy</button>
+<pre class="code" id="installcode"><span class="c"># 1. the ghost's body: Ollama + an open-weight Gemma model</span>
+curl -fsSL https://ollama.com/install.sh | sh
+ollama pull gemma3:4b          <span class="c"># default; use gemma3:1b on slower machines</span>
+
+<span class="c"># 2. séance itself (pure Python stdlib, no dependencies)</span>
+pipx install git+https://github.com/Tx13758627780/seance-sh
+<span class="c">#   or, from a clone:  pipx install .</span>
+
+<span class="c"># 3. let it in</span>
+echo 'eval "$(seance init bash)"' &gt;&gt; ~/.bashrc     <span class="c"># or: seance init zsh &gt;&gt; ~/.zshrc</span>
+seance doctor                                     <span class="c"># checks Ollama + models, measures a whisper</span></pre>
+  </div>
+  <p class="note">Then open a new shell and run anything. Build the altar with <code>seance ofrenda</code> (or <code>seance ofrenda --out ofrenda.md</code> to keep the remembrances, <code>--no-ai</code> for offline templates).</p>
+</section>
+
+<section id="benchmarks">
+  <h2>How fast does a <span class="m">ghost</span> whisper?</h2>
+  <p class="lead">Measured on 2026-10-27 on a Linux VM with 8 vCPU Intel Xeon, 16 GB RAM, <b>no GPU</b>. Ollama 0.40.11, official Q4_K_M builds, séance's real prompt, 14 runs each, streamed, max 70 tokens.</p>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>model</th><th>cold load + first reply</th><th>warm: first word (median, min–max)</th><th>warm: full whisper (median, min–max)</th></tr></thead>
+    <tbody>
+      <tr><td>gemma3:1b</td><td>3.08 s</td><td>0.90 s (0.70–1.13)</td><td>1.78 s (1.41–2.34)</td></tr>
+      <tr><td>gemma3:4b</td><td>6.79 s</td><td>1.90 s (1.38–2.75)</td><td>3.58 s (2.54–5.90)</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">Memory while loaded (<code>ollama ps</code>): gemma3:4b 2.9 GB, gemma3:1b 1.2 GB. The hook waits for the whisper before your next prompt, so use <code>SEANCE_MODEL=gemma3:1b</code> (~2× faster) or lower <code>SEANCE_RATE</code> when you need to work fast. Full details in <a href="https://github.com/Tx13758627780/seance-sh/blob/main/docs/BENCHMARKS.md">docs/BENCHMARKS.md</a>.</p>
+</section>
+
+<section id="why">
+  <div class="why">
+    <div>
+      <h2>Why a <span class="m">local, open</span> Gemma</h2>
+      <p class="lead">Your shell history is one of the most private logs on your computer. A ghost that reads it should live inside the machine.</p>
+      <ul>
+        <li><b>Your history never leaves your machine.</b> Gemma 3 runs on localhost through Ollama; séance's state stays in <code>~/.local/state/seance/</code>, redacted.</li>
+        <li><b>No API keys, no network, no telemetry.</b> It works fully offline, even on a CPU-only machine.</li>
+        <li><b>Open weights you can choose.</b> <code>gemma3:4b</code> by default, <code>gemma3:1b</code> on slower machines; pick with <code>SEANCE_MODEL</code>.</li>
+      </ul>
+    </div>
+    <div class="altar" aria-hidden="true">🕯️🌼💀🌼🕯️<br>🌼👻🌼<small>“the ghost lives inside the machine”</small></div>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="marigolds" aria-hidden="true">🌼🕯️🌼🕯️🌼</div>
+    <p><b>séance</b> is open source under the <a href="https://github.com/Tx13758627780/seance-sh/blob/main/LICENSE">MIT License</a> © 2026 xt. Built for the <a href="https://dev.to/challenges/hacktoberfest-week4-2026-10-26">Hacktoberfest 2026 Open-Source AI Challenge, Week 4</a>.</p>
+    <p><a href="https://github.com/Tx13758627780/seance-sh">GitHub</a> · <a href="https://dev.to/t364170654/seance-i-let-a-gemma-ghost-haunt-my-shell-and-built-it-an-ofrenda-for-my-deleted-files-3590">DEV post</a> · Gemma is provided under the <a href="https://ai.google.dev/gemma/terms">Gemma Terms of Use</a>.</p>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{
+  const t=document.getElementById(b.dataset.target).innerText;
+  navigator.clipboard.writeText(t).then(()=>{b.textContent='copied';setTimeout(()=>b.textContent='copy',1500)});
+}));
+</script>
+</body>
+</html>

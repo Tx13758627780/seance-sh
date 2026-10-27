@@ -1,5 +1,7 @@
 # séance 👻 — a haunted terminal
 
+Home page: https://seance.tianx.tech. The page source is in `site/`.
+
 > *"Another make test… you persist in this futile dance, a shadow of my own unending labor."*
 > — Ezequiel, the ghost in your shell
 
