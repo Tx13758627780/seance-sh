@@ -1,0 +1,32 @@
+  gemma3:1b 'ls -la'                               first=0.73s total=1.72s | You, you foolishly executed ls -la. A pointless exercise, really.
+  gemma3:1b 'make test'                            first=0.70s total=2.00s | You, you foolish mortal, begin with the simplest of tasks. make test – a pointless exercise, really, doesn’t it?
+  gemma3:1b 'rm -rf build/'                        first=0.71s total=1.53s | You, you foolish mortal, have unleashed a tempest of digital despair. rm -rf build/ succeeded, a brutal, unnecessary act.
+  gemma3:1b 'python train.py'                      first=0.87s total=1.73s | You, you foolish mortal, executed a command of profound sorrow. python train.py failed.
+  gemma3:1b 'gti status'                           first=0.83s total=1.81s | You, as the ghost of a server admin, watched the shell run. gti status – a failed attempt to gauge the state of your forgotten world, it seems.
+  gemma3:1b 'git push --force origin main'         first=0.84s total=1.85s | You, a lonely sentinel, observe the insistent command. It’s a desperate act, a futile attempt at dominance.
+  gemma3:1b 'sudo systemctl restart nginx'         first=0.96s total=1.85s | You, a digital echo, now watch the flow of your actions. sudo systemctl restart nginx.
+  gemma3:1b 'ls -la'                               first=0.89s total=1.75s | You continue to execute the same script, a repetitive cycle. A melancholic pattern, isn’t it?
+  gemma3:1b 'make test'                            first=0.91s total=1.41s | Make test failed, a pathetic little echo of your ambitions. 2 is a cruel marker, a testament to wasted effort.
+  gemma3:1b 'rm -rf build/'                        first=1.01s total=2.34s | You, a lonely ghost, watch the endless loop of your actions. That ‘rm -rf build/’ is a particularly mournful sequence.
+  gemma3:1b 'python train.py'                      first=1.06s total=1.91s | You executed ‘train.py’. A pale imitation of your initial tasks, perhaps?
+  gemma3:1b 'gti status'                           first=1.13s total=1.75s | You, you stubbornly pursue the ghost of a command. 127…a simple failure, a tiny echo of your own restless code.
+  gemma3:1b 'git push --force origin main'         first=1.02s total=1.56s | You pushed, a futile gesture against the inevitable. The repository is now a fractured mirror, reflecting a ghost's desperate attempt.
+  gemma3:1b 'sudo systemctl restart nginx'         first=1.08s total=2.18s | The system is restless, isn't it? That sudo systemctl restart nginx is a familiar dance.
+gemma3:1b: cold load+first reply 3.08s | warm first word median 0.90s (min 0.70, max 1.13) | full whisper median 1.78s (min 1.41, max 2.34) | ~17 words
+
+  gemma3:4b 'ls -la'                               first=1.38s total=2.54s | A simple list, you seek. Exit code zero, a fleeting comfort, like a forgotten patch.
+  gemma3:4b 'make test'                            first=1.39s total=3.28s | That make test… a futile echo of my desperate attempts to diagnose the system.
+  gemma3:4b 'rm -rf build/'                        first=1.41s total=3.12s | rm -rf build/ succeeded, a chilling echo of that fateful fsck. Exit code zero, yet I feel the loss of everything.
+  gemma3:4b 'python train.py'                      first=1.67s total=3.69s | python train.py exited with 137, a brutal termination, like my own. The OOM killer claims another victim; I’ve seen this pattern before.
+  gemma3:4b 'gti status'                           first=1.59s total=4.24s | gti status... a futile search for order, much like my own existence.
+  gemma3:4b 'git push --force origin main'         first=2.44s total=5.37s | That push... a desperate plea to erase the past, exiting with a comforting 0.
+  gemma3:4b 'sudo systemctl restart nginx'         first=2.75s total=5.90s | Restarting Nginx… a familiar cycle, much like the cooling fans of this room.
+  gemma3:4b 'ls -la'                               first=2.02s total=4.69s | ls -la. Such a familiar dance, returning to the empty rooms of the directory.
+  gemma3:4b 'make test'                            first=1.76s total=3.50s | That make test… another predictable echo of your despair, exit code two.
+  gemma3:4b 'rm -rf build/'                        first=1.83s total=3.61s | That rm -rf build/ delivered its usual, unsettling exit code of zero. Perhaps you're recreating my final moments, you fool.
+  gemma3:4b 'python train.py'                      first=2.04s total=3.51s | python train.py exited with 137. The machine rejected your plea, just as it did before.
+  gemma3:4b 'gti status'                           first=2.23s total=3.55s | gti status returned 127. You seek a tool that does not exist, a phantom command.
+  gemma3:4b 'git push --force origin main'         first=1.98s total=3.33s | Another push, another echo of my final moments. Exit 0, a cruel mimicry of my unending wait.
+  gemma3:4b 'sudo systemctl restart nginx'         first=2.07s total=3.73s | Restarting nginx again, you summon a familiar, ghostly echo. Exit 0, yet the cycle continues, just as it did for me.
+gemma3:4b: cold load+first reply 6.79s | warm first word median 1.90s (min 1.38, max 2.75) | full whisper median 3.58s (min 2.54, max 5.90) | ~16 words
+

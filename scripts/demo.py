@@ -71,7 +71,8 @@ def main(cast: str):
     env = dict(os.environ, HOME=str(HOME), SEANCE_HOME=str(ROOT / "state"), SEANCE_SHOW_LATENCY="1",
                TERM="xterm-256color", SHELL="/bin/bash", SEANCE_GLITCH="0.35",
                PATH=os.path.dirname(shutil.which("seance")) + ":" + os.environ["PATH"])
-    env.pop("SEANCE_SESSION", None)
+    for var in ("SEANCE_SESSION", "NO_COLOR", "FORCE_COLOR"):
+        env.pop(var, None)
     rcmd = f"asciinema rec --overwrite -q --cols 100 --rows 34 -i 1.5 -c 'bash --rcfile {HOME}/.bashrc -i' {cast}"
     child = pexpect.spawn("bash", ["-c", rcmd], env=env, encoding="utf-8", timeout=180,
                           dimensions=(34, 100), cwd=str(HOME))

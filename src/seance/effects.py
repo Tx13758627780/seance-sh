@@ -118,17 +118,19 @@ def possess(text: str, intensity: int = 1, stream=None, rnd: random.Random | Non
 
 
 def typewrite(text: str, delay: float, stream=None, styles=("violet", "italic")) -> None:
+    """Print text word-wrapped with a hanging indent equal to its leading spaces."""
+    import shutil
+
     stream = stream or sys.stdout
-    if not enabled(stream) or delay <= 0:
-        stream.write(paint(text, *styles, stream=stream) + "\n")
-        stream.flush()
-        return
-    stream.write("".join(PALETTE[s] for s in styles))
-    for ch in text:
-        stream.write(ch)
-        stream.flush()
-        time.sleep(delay * (4 if ch in ".,…" else 1))
-    stream.write(RESET + "\n")
+    on = enabled(stream)
+    indent = len(text) - len(text.lstrip(" "))
+    if on:
+        stream.write("".join(PALETTE[s] for s in styles))
+    stream.write(" " * indent)
+    w = Wrapper(stream, shutil.get_terminal_size((100, 24)).columns - 1, indent, indent, delay if on else 0)
+    w.feed(text.lstrip(" "))
+    w.close()
+    stream.write((RESET if on else "") + "\n")
     stream.flush()
 
 
